@@ -1,0 +1,9 @@
+FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
+RUN apt-get update -y \
+     && apt-get install -y python3-pip
+WORKDIR /app
+COPY . .
+RUN python3 -m pip install -e .
+EXPOSE 8000
+COPY entrypoint.sh /usr/local/bin/
+CMD [ "entrypoint.sh" ]
